@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { GraphQLClient } from 'graphql-request'
 
 export default function Home({ recipes }) {
-  console.log(recipes[0].foto);
+  console.log(recipes);
 
   return (
     <div className={styles.container}>
@@ -12,15 +13,16 @@ export default function Home({ recipes }) {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.recipe__container}>
         {
           recipes.map((recipe) => (
-            <div className="recipe" key={recipe.id}>
-              <div className="recipe__name">{recipe.recipeName}</div>
-              <img src="https://www.datocms-assets.com/35454/2769679-Pasta with scampi in tomato cream sauce.jpg"></img>
+            <div className={styles.recipe} key={recipe.id}>
+              <img className={styles.recipe__photo} src={recipe.foto.url + "?w=200"} alt={recipe.foto.alt}></img>
+              <div className={styles.recipe__name}>{recipe.recipeName}</div>
             </div>
           ))
         }
-        
+        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -36,17 +38,45 @@ export default function Home({ recipes }) {
     </div>
   )
 }
+const HOMEPAGE_QUERY = `query MyQuery {
+  allRecipes {
+    id
+    recipeName
+    ingredients {
+      id
+      name
+      amount
+    }
+    foto {
+      id
+      url
+      alt
+    }
+  }
+}`
+export function request({ query, variables, preview }) {
+  const endpoint = preview
+    ? `https://graphql.datocms.com/preview`
+    : `https://graphql.datocms.com/`
 
+  const client = new GraphQLClient(endpoint, {
+    headers: {
+      authorization: `Bearer 76053cf513ef437fff9ac831dabab3`
+    }
+  })
+  return client.request(query, variables)
+}
 
 export async function getStaticProps() {
-  const { SiteClient } = require("datocms-client");
-  const client = new SiteClient("76053cf513ef437fff9ac831dabab3");
-  const recipes = await client.items.all({
-      'filter[type]':'323133',
+  const data = await request({
+    query: HOMEPAGE_QUERY,
+    variables: {}
   });
+
+  console.log(data);
   return {
     props: {
-      recipes: recipes,
+      recipes: data.allRecipes,
     },
   }
 }
