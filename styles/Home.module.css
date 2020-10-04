@@ -123,7 +123,7 @@
 }
 
 .recipe{
-  max-width: 300px;
+  width: 300px;
   height: 300px;
   margin: 10px;
   border-radius: 10px;
@@ -138,6 +138,7 @@
   background-color: white;
   color: black;
   border: 1px solid rgb(68, 68, 68);
+  cursor: pointer;
 }
 
 .recipe__photo{
@@ -160,6 +161,16 @@
     width: 100%;
     flex-direction: column;
   }
+
+  .recipe__container{
+    flex-direction: column;
+  }
+
+  .recipe{
+    width: 100%;
+    margin: 10px 0;
+  }
+
 }
 
 
