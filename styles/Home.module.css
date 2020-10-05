@@ -1,28 +1,19 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .main {
-  padding: 5rem 0;
+  align-items: center;
   flex: 1;
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  min-height: 100vh;
 }
 
 .footer {
-  width: 100%;
-  height: 100px;
+  align-items: center;
   border-top: 1px solid #eaeaea;
   display: flex;
+  height: 100px;
   justify-content: center;
-  align-items: center;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .footer img {
@@ -30,9 +21,9 @@
 }
 
 .footer a {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .title a {
@@ -47,9 +38,9 @@
 }
 
 .title {
-  margin: 0;
-  line-height: 1.15;
   font-size: 4rem;
+  line-height: 1.15;
+  margin: 0;
 }
 
 .title,
@@ -65,18 +56,17 @@
 .code {
   background: #fafafa;
   border-radius: 5px;
-  padding: 0.75rem;
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  Bitstream Vera Sans Mono, Courier New, monospace;
+  padding: 0.75rem;
 }
 
 .grid {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
   max-width: 800px;
   margin-top: 3rem;
 }
@@ -96,81 +86,113 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
   border-color: #0070f3;
+  color: #0070f3;
 }
 
 .card h3 {
-  margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  margin: 0 0 1rem 0;
 }
 
 .card p {
-  margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+  margin: 0;
 }
 
-.logo {
-  height: 1em;
-}
-
-.recipe__container{
-  width: 80vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-}
-
-.recipe{
-  width: 300px;
-  height: 300px;
-  margin: 10px;
-  border-radius: 10px;
-  background-color: rgb(68, 68, 68);
+.homepage__heading{
+  background-image: url('../pictures/background-2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   color: white;
-  display: flex;
-  flex-direction: column;
+  padding: 40px 10% 15px 10%;
+  width: 100vw;
+}
+
+.homepage__title{
+  color: rgb(245, 229, 216);
+  font-family: 'Sansita Swashed', cursive;
+  font-size: 100px;
+  font-weight: bold;
   text-align: center;
 }
 
+.homepage__subtitle{
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: right;
+}
+
+.recipe__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 50px 15%;
+}
+
+.recipe{
+  border-radius: 10px;
+  background-color: rgb(68, 68, 68);
+  color: rgb(245, 229, 216);
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  margin: 10px 0;
+  text-align: center;
+  width: 350px;
+}
+
 .recipe:hover{
-  background-color: white;
-  color: black;
+  background-color:  rgb(245, 229, 216);
   border: 1px solid rgb(68, 68, 68);
+  color: rgb(68, 68, 68);
   cursor: pointer;
 }
 
 .recipe__photo{
-  width: 100%;
-  height: 200px;
   border-radius: 10px 10px 0 0 ;
+  height: 200px;
   object-fit: cover;
+  width: 100%;
 }
 
 .recipe__name{
-  padding: 0 5%;
-  margin: auto;
   font-size: 20px;
   font-weight: bold;
+  margin: auto;
+  padding: 0 5%;
 }
-
+@media (max-width: 1200px) {
+  .homepage__subtitle{
+    text-align: center;
+  }
+}
 
 @media (max-width: 600px) {
   .grid {
-    width: 100%;
     flex-direction: column;
+    width: 100%;
   }
 
+  .homepage__title{
+    font-size: 40px;
+  }
+
+  .homepage__subtitle{
+    font-size: 20px;
+  }
   .recipe__container{
     flex-direction: column;
   }
 
   .recipe{
-    width: 100%;
     margin: 10px 0;
+    width: 100%;
   }
 
 }
-
-

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Detailpage.module.css';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { GraphQLClient } from 'graphql-request';
 
 export function request({ query, variables, preview }) {
@@ -17,7 +17,6 @@ export function request({ query, variables, preview }) {
 }
 
 export default function DetailPage(recipe) {
-	console.log(recipe);
 	return (
 	  <div className={styles.container}>
 		<Head>
@@ -27,8 +26,15 @@ export default function DetailPage(recipe) {
   
 		<main className={styles.main}>
 		<div className={styles.recipe__container}>
+			<Link href="/" >
+				<div className={styles.homebutton}>
+					<div className={styles.homebutton__image}></div>
+					<div className={styles.homebutton__text}> return home</div>
+				</div>
+				
+			</Link>
 			<div className={styles.recipe__name}>{recipe.recipeName}</div>
-				<div className={styles.ingredient__title}>
+				<div className={styles.recipe__subtitle}>
 					Ingredients
 				</div>
 				<div className={styles.recipe__content}>
@@ -44,7 +50,7 @@ export default function DetailPage(recipe) {
 					</div>
 					<img className={styles.recipe__photo} src={recipe.foto.url}></img>
 				</div>
-				<div className={styles.ingredient__title}>
+				<div className={styles.recipe__subtitle}>
 					Instructions
 				</div>
 				<div className={styles.recipe__instruction}>

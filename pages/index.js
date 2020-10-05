@@ -3,18 +3,6 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { GraphQLClient } from 'graphql-request';
 
-const HOMEPAGE_QUERY = `query MyQuery {
-  allRecipes {
-    id
-    recipeName
-    foto {
-      id
-      url
-      alt
-    }
-  }
-}`;
-
 export function request({ query, variables, preview }) {
   const endpoint = preview
     ? `https://graphql.datocms.com/preview`
@@ -29,6 +17,18 @@ export function request({ query, variables, preview }) {
 }
 
 export async function getStaticProps() {
+  const HOMEPAGE_QUERY = `query MyQuery {
+    allRecipes {
+      id
+      recipeName
+      foto {
+        id
+        url
+        alt
+      }
+    }
+  }`;
+
   const data = await request({
     query: HOMEPAGE_QUERY,
     variables: {}
@@ -50,6 +50,15 @@ export default function Home({ recipes }) {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.homepage__heading}>
+          <div className={styles.homepage__title}>
+            My favourite recipes
+          </div>
+          <div className={styles.homepage__subtitle}>
+            by Maarten Oste
+          </div>
+        </div>
+
         <div className={styles.recipe__container}>
         {
           recipes.map((recipe) => (
