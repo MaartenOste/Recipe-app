@@ -31,7 +31,6 @@ export default function DetailPage(recipe) {
 					<div className={styles.homebutton__image}></div>
 					<div className={styles.homebutton__text}> return home</div>
 				</div>
-				
 			</Link>
 			<div className={styles.recipe__name}>{recipe.recipeName}</div>
 				<div className={styles.recipe__subtitle}>

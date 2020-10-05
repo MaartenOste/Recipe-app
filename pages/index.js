@@ -16,32 +16,7 @@ export function request({ query, variables, preview }) {
   return client.request(query, variables);
 }
 
-export async function getStaticProps() {
-  const HOMEPAGE_QUERY = `query MyQuery {
-    allRecipes {
-      id
-      recipeName
-      foto {
-        id
-        url
-        alt
-      }
-    }
-  }`;
-
-  const data = await request({
-    query: HOMEPAGE_QUERY,
-    variables: {}
-  });
-
-  return {
-    props: {
-      recipes: data.allRecipes,
-    },
-  }
-}
-
-export default function Home({ recipes }) {
+export default function Home({recipes}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -78,4 +53,26 @@ export default function Home({ recipes }) {
       </footer>
     </div>
   )
+}
+
+Home.getInitialProps = async () => {
+	const HOMEPAGE_QUERY = `query MyQuery {
+    allRecipes {
+      id
+      recipeName
+      foto {
+        id
+        url
+        alt
+      }
+    }
+  }`;
+
+	const data = await request({
+		query: HOMEPAGE_QUERY,
+		variables: {}
+    });
+  let recipes = data.allRecipes;
+  console.log(recipes);
+	return {recipes};
 }
