@@ -73,6 +73,5 @@ Home.getInitialProps = async () => {
 		variables: {}
     });
   let recipes = data.allRecipes;
-  console.log(recipes);
 	return {recipes};
 }
